@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service'; 
+import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-header',
@@ -16,8 +17,10 @@ export class HeaderComponent implements OnInit {
   input?:String
   detailTitle: string = ''
 
-  constructor(public app: AppService){
+  constructor(public app: AppService,
+    private spinner: NgxSpinnerService){
   }
+
 
   ngOnInit(): void {
     this.fetchProducts()
@@ -71,5 +74,12 @@ export class HeaderComponent implements OnInit {
         }
       )
   }
+
+openSpinner() {
+  this.spinner.show()
+  setTimeout(()=>{
+    this.spinner.hide()
+  },500)
+}
 
 }
