@@ -1,43 +1,11 @@
-<header>
-    <div class="container mx-auto">
-        <div class="flex justify-between py-4">
-            <div class="">
-                <h1 class="font-bold text-2xl text-blue-300">Logo</h1>
-            </div>
-
-
-            <div class="flex gap-2">
-
-                <input [(ngModel)]="search" type="text" placeholder="Search phone and electronic devices"
-                    class="w-72 bg-gray-100 rounded-md px-[10px] py-[5px]">
-                <button (click)="addButton()" class=" bg-white px-[10px] py-[5px] rounded-md"><img
-                        src="../../assets/images/search.png" alt="search"></button>
-
-            </div>
-
-            <div class="">
-                <button class=" bg-blue-300 px-[10px] py-[5px] rounded-md text-white">Sign Up</button>
-
-            </div>
-        </div>
-
-    </div>
-</header>
-
 <body class="container mx-auto">
     <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 pt-[60px]">
 
         <div
             class=" pt-[30px] border-3 border-blue-100 px-10 pb-[30px] w-[300px] cursor-pointer flex flex-col space-y-2 ">
-            <h1 class="px-[60px] hover:bg-blue-300 py-[5px] rounded-md hover:text-white">All Products</h1>
-            <hr class="w-[200px]">
-            <h1 class="px-[60px] hover:bg-blue-300 py-[5px] rounded-md hover:text-white">Men's Clothing</h1>
-            <hr class="w-[200px]">
-            <h1 class="px-[60px] hover:bg-blue-300 py-[5px] rounded-md hover:text-white">Jewelery</h1>
-            <hr class="w-[200px]">
-            <h1 class="px-[60px] hover:bg-blue-300 py-[5px] rounded-md hover:text-white">Electronics</h1>
-            <hr class="w-[200px]">
-            <h1 class="px-[60px] hover:bg-blue-300 py-[5px] rounded-md hover:text-white">Women's Clothing</h1>
+            <h1 class="px-[60px] hover:bg-blue-300 py-[5px] rounded-md hover:text-white" (click)="fetchProducts()" (click)="openSpinner()">All Products</h1>
+            <h1 *ngFor = "let category of categories" class="px-[60px] hover:bg-blue-300 py-[5px] rounded-md hover:text-white"
+            (click)="fetchWithCategory(category)" (click)="openSpinner()">{{category | uppercase}}</h1>
         </div>
 
         <div class="lg:col-span-2 mr-[80px]">
@@ -65,31 +33,36 @@
 
             <div class="text-[20px] font-bold mb-4">
 
+                <div *ngIf="products.length > 0; else noDataFound">
+                    <h1 class="mb-3 capitalize ">{{detailTitle ? detailTitle : 'All products'}}</h1>
 
-                <h1 class="mb-3 capitalize ">{{detailTitle ? detailTitle : 'All products'}}</h1>
 
+                    <div class="flex overflow-auto gap-5">
+                        <div *ngFor="let product of products; let i = index">
+                            <div
 
-                <div class="flex overflow-auto gap-5">
-                    <div *ngFor="let product of products; let i = index">
-                        <div
-                            class="w-[190px] h-[250px] shadow-gray-100 rounded-[5px] flex flex-col items-center justify-center">
-                            <img [src]="product.image" alt="samsung-photo" class="h-28 w-24">
-                            <p class="text-[14px] line-clamp-1 pt-5">{{product.title}}</p>
-                            <p class="text-[12px] font-extrabold mx-36">{{product.price}}$</p>
-                            <div class="my-4">
-                                <button
-                                    class="border border-[#008ECC] rounded-[8px] px-2 py-1 text-[14px] text-[#008ECC] w-full hover:bg-[#008ECC] hover:text-white">Add
-                                    to cart</button>
+                                class="w-[190px] h-[250px] shadow-gray-100 rounded-[5px] flex flex-col items-center justify-center">
+                                <img [src]="product.image" alt="samsung-photo" class="h-28 w-24 cursor-pointer" routerLink="detailPage">
+                                <p class="text-[14px] line-clamp-1 p-4">{{product.title}}</p>
+                                <p class="text-[12px] font-extrabold mx-36">${{product.price}}</p>
+                                <div class="my-4">
+                                    <button
+                                        class="border border-[#008ECC] rounded-[8px] px-2 py-1 text-[14px] text-[#008ECC] w-full hover:bg-[#008ECC] hover:text-white">Add
+                                        to cart</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <ng-template #noDataFound>
+                    <p class="text-red-700 text-2xl">No data found</p>
+                </ng-template>
 
             </div>
 
             <div>
                 <h1 class="text-[20px] font-bold mb-4">Top Brand Promotions</h1>
-                <div class="  gap-4 flex flex-row overflow-auto">
+                <div class="gap-4 flex flex-row overflow-auto">
                     <div class="bg-[#282828] flex min-w-[445px] rounded-xl justify-between ">
                         <div class=" pl-14 lg:pl-20 flex  flex-col justify-center">
                             <p class="text-white bg-[#636363] rounded-md px-2 py-1 text-[16px] w-[68px]">IPhone</p>
@@ -129,7 +102,7 @@
 
 </body>
 
-<footer class="flex justify-center py-10 bg-[#008ECC] mt-5 text-white">
+<footer class="flex justify-center py-10 bg-[#008ECC] mt-14 text-white">
     <p>© 2024 All rights reserved. Reliance Retail Ltd.</p>
 
 </footer>

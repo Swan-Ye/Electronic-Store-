@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service'; 
-import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
+import {  NgxSpinnerService } from 'ngx-spinner';
+
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
+
 export class HeaderComponent implements OnInit {
 
   readProducts: any[] = []
@@ -16,6 +19,7 @@ export class HeaderComponent implements OnInit {
   search:any
   input?:String
   detailTitle: string = ''
+  detailDatas: any[] = []
 
   constructor(public app: AppService,
     private spinner: NgxSpinnerService){
@@ -34,7 +38,6 @@ export class HeaderComponent implements OnInit {
         this.readProducts = data
         this.products = data
         this.detailTitle = ''
-        console.log( this.products, ' kkkkkkkk products')
       },
       (error: any)=> {
         console.log(error)
@@ -47,7 +50,7 @@ export class HeaderComponent implements OnInit {
     this.app.getCategory().subscribe(
       (data: any)=> {
         this.categories = data 
-        console.log(this.categories, 'llllllll')
+        console.log(this.categories)
       },
       (error: any)=> {
         console.log(error)
@@ -55,16 +58,7 @@ export class HeaderComponent implements OnInit {
     )
   }
 
-  addButton() {
-    if (this.search === ''  || this.search == undefined) {
-      this.fetchProducts();
-    } else {
-      const result =  this.readProducts.filter(data => data.category === this.search.toLowerCase());
-      this.products = result;
-      this.detailTitle = result[0]?.category;
-    }
-    this.search = '';
-  }
+
 
   fetchWithCategory(categroyName: string){
       this.app.getWithCategroy(categroyName).subscribe(
@@ -81,5 +75,6 @@ openSpinner() {
     this.spinner.hide()
   },500)
 }
-
 }
+
+

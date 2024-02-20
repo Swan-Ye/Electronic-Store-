@@ -1,2 +1,31 @@
+<header>
+    <div class="container mx-auto">
+        <div class="flex justify-between py-4">
+            <div class="">
+                <button class="font-bold text-2xl text-blue-300" (click)="goToHome()">Logo</button>
+            </div>
+
+
+            <div class="flex gap-2">
+
+                <input [(ngModel)]="search" type="text" placeholder="Search phone and electronic devices"
+                    class="w-72 bg-gray-100 rounded-md px-[10px] py-[5px]"  (keyup.enter)="fetchCatagory()">
+                <button (click)="addButton()" class="bg-white px-[10px] py-[5px] rounded-md"><img
+                        src="../../assets/images/search.png" alt="search"></button>
+
+            </div>
+
+            <div class="">
+                <button class=" bg-blue-300 px-[10px] py-[5px] rounded-md text-white">Sign Up</button>
+
+            </div>
+        </div>
+
+    </div>
+</header>
+
 <link href="./output.css" rel="header.componet.css">
-<app-header></app-header>
+<a routerLink="/detail-page"></a>
+
+
+<router-outlet></router-outlet>
