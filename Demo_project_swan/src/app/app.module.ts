@@ -9,12 +9,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { DetailPageComponent } from './detail-page/detail-page.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    DetailPageComponent
+    DetailPageComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
