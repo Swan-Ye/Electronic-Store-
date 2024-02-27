@@ -10,6 +10,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { DetailPageComponent } from './detail-page/detail-page.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { TestComponent } from './test/test.component';
+import {MatButtonModule} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,9 @@ import { TestComponent } from './test/test.component';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     MatPaginatorModule, 
+    MatButtonModule,
+    MatIconModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
