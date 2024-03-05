@@ -24,4 +24,5 @@ export class AppService {
   getWithCategroy(categoryName:string){
     return this.http.get(`${this.baseUrl}/products/category/${categoryName}`) 
   }
+
 }

@@ -11,7 +11,7 @@ const routes: Routes = [
 },
 
   {
-    path: 'detailPage',
+    path: 'detailPage/:id',
     component: DetailPageComponent
   }
 ];

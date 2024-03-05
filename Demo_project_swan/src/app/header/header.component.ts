@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service'; 
 import {  NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,10 +21,14 @@ export class HeaderComponent implements OnInit {
   input?:String
   detailTitle: string = ''
   detailDatas: any[] = []
-
-  constructor(public app: AppService,
-    private spinner: NgxSpinnerService){
-  }
+  AppService: any;
+  sProduct : any [] = []
+  
+  constructor(
+    public app: AppService,
+    private spinner: NgxSpinnerService,
+    private router: Router
+  ){}
 
 
   ngOnInit(): void {
@@ -74,6 +79,10 @@ openSpinner() {
   setTimeout(()=>{
     this.spinner.hide()
   },500)
+}
+
+eachProduct(id: any){
+  this.router.navigate(['/detailPage', id])
 }
 }
 
