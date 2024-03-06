@@ -13,16 +13,18 @@ export class AppService {
   fetch() {
     return this.http.get(`${this.baseUrl}/products`)
   }
-
+  fetchSingle(id:any) {
+    return this.http.get(`${this.baseUrl}/products/${id}`)
+  }
   getCategory(){
     return this.http.get(`${this.baseUrl}/products/categories`)
   }
-
   getElectronic(){
     return this.http.get(`${this.baseUrl}/products/category/electronics`)
   }
   getWithCategroy(categoryName:string){
     return this.http.get(`${this.baseUrl}/products/category/${categoryName}`) 
+    
   }
 
 }
