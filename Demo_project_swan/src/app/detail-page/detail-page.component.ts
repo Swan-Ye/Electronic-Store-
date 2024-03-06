@@ -11,12 +11,14 @@ export class DetailPageComponent implements OnInit {
   products: any[] = []
   sid: any
   result: any
-  constructor(private route: ActivatedRoute, private appService: AppService, private spinner: NgxSpinnerService,) { }
+  constructor(private route: ActivatedRoute, private appService: AppService, private spinner: NgxSpinnerService,
+    ) { }
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const id = params['id'];
       this.sid = id;
       this.fetchSingleProducts()
+
     });
   }
   fetchSingleProducts() {

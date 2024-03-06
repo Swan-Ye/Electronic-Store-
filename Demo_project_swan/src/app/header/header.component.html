@@ -2,10 +2,10 @@
     <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 pt-[60px]">
 
         <div
-            class=" pt-[30px] border-3 border-blue-100 px-10 pb-[30px] w-[300px] cursor-pointer flex flex-col space-y-2 ">
-            <h1 class="px-[60px] hover:bg-blue-300 py-[5px] rounded-md hover:text-white" (click)="fetchProducts()" (click)="openSpinner()">All Products</h1>
-            <h1 *ngFor = "let category of categories" class="px-[60px] hover:bg-blue-300 py-[5px] rounded-md hover:text-white"
-            (click)="fetchWithCategory(category)" (click)="openSpinner()">{{category | uppercase}}</h1>
+            class=" pt-[30px] border-3 border-blue-100 px-10 pb-[30px] w-[350px] cursor-pointer flex flex-col space-y-2 ">
+            <h2 class="px-[60px] hover:bg-blue-300 py-[5px] rounded-md hover:text-white" (click)="fetchProducts()" (click)="openSpinner()">All Products</h2>
+            <h2 *ngFor = "let category of categories" class="px-[60px] hover:bg-blue-300 py-[5px] rounded-md hover:text-white"
+            (click)="fetchWithCategory(category)" (click)="openSpinner()">{{category | uppercase}}</h2>
         </div>
 
         <div class="lg:col-span-2 mr-[80px]">

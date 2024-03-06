@@ -43,6 +43,7 @@ export class HeaderComponent implements OnInit {
         this.readProducts = data
         this.products = data
         this.detailTitle = ''
+        
       },
       (error: any)=> {
         console.log(error)
@@ -69,6 +70,7 @@ export class HeaderComponent implements OnInit {
         (data:any) => {
           this.products = data
           this.detailTitle = data[0]?.category;
+          
         }
       )
   }
@@ -81,6 +83,7 @@ openSpinner() {
 }
 
 eachProduct(id: any){
+  this.openSpinner() 
   this.router.navigate(['/detailPage', id])
 }
 
