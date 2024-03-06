@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 import { ActivatedRoute } from '@angular/router';
+import {  NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-detail-page',
   templateUrl: './detail-page.component.html',
@@ -10,13 +11,11 @@ export class DetailPageComponent implements OnInit {
   products: any[] = []
   sid: any
   result: any
-  constructor(private route: ActivatedRoute, private appService: AppService) { }
+  constructor(private route: ActivatedRoute, private appService: AppService, private spinner: NgxSpinnerService,) { }
   ngOnInit(): void {
-    // Retrieve the ID from the route parameters
     this.route.params.subscribe(params => {
       const id = params['id'];
       this.sid = id;
-      // Use the ID as needed in your detail page
       this.fetchSingleProducts()
     });
   }
@@ -30,9 +29,14 @@ export class DetailPageComponent implements OnInit {
         console.log(error)
       }
     )
-
   }
-
+  openSpinner() {
+    this.spinner.show()
+    setTimeout(()=>{
+      this.spinner.hide()
+    },500)
+    console.log('abcd')
+  }
   
 }
 

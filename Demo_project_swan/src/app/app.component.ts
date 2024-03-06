@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { AppService } from './app.service';
 import { Router } from '@angular/router';
 
@@ -53,7 +52,7 @@ export class AppComponent implements OnInit{
     this.app.getCategory().subscribe(
       (data: any)=> {
         this.categories = data 
-        console.log(this.categories, 'dsaflidshfiuf')
+        console.log(this.categories)
       },
       (error: any)=> {
         console.log(error)
