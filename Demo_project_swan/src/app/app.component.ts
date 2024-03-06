@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { AppService } from './app.service';
 import { Router } from '@angular/router';
 
