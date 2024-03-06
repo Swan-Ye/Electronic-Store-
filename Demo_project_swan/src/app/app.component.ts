@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AppService } from './app.service';
 import { Router } from '@angular/router';
 
@@ -8,9 +9,11 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent  {
+export class AppComponent implements OnInit{
   
   constructor (public app:AppService, private router: Router) {}
+  ngOnInit(): void {
+  }
 
   readProducts: any[] = []
   products: any[] = []
@@ -50,7 +53,7 @@ export class AppComponent  {
     this.app.getCategory().subscribe(
       (data: any)=> {
         this.categories = data 
-        console.log(this.categories)
+        console.log(this.categories, 'dsaflidshfiuf')
       },
       (error: any)=> {
         console.log(error)
