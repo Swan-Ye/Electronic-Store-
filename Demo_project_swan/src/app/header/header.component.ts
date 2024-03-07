@@ -37,6 +37,27 @@ export class HeaderComponent implements OnInit {
   }
 
 
+  addButton() {
+    if (this.search === ''  || this.search == undefined) {
+      this.fetchProducts();
+    } else {
+      const result =  this.readProducts.filter(data => data.category === this.search.toLowerCase());
+      
+      this.products = result;
+      
+      this.detailTitle = result[0]?.category;
+    }
+    this.search = '';
+  }
+
+  goToHome(){
+    this.router.navigate(['/home'])
+  }
+
+  onLogout(){
+    this.router.navigate(['/'])
+  }
+
   fetchProducts() {
     this.app.fetch().subscribe(
       (data: any)=>{

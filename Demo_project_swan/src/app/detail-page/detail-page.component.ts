@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {  NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-detail-page',
@@ -8,11 +8,25 @@ import {  NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./detail-page.component.css']
 })
 export class DetailPageComponent implements OnInit {
+
   products: any[] = []
   sid: any
   result: any
-  constructor(private route: ActivatedRoute, private appService: AppService, private spinner: NgxSpinnerService,
-    ) { }
+  search:any
+  data: any[] = []
+  readProducts: any[] = []
+  detailTitle: string = ''
+  AppService: any
+  categories: any[] = []
+
+  constructor(
+    private route: ActivatedRoute,
+    private appService: AppService,
+    private spinner: NgxSpinnerService,
+    private router: Router,
+    public app: AppService
+    ) {}
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const id = params['id'];
@@ -21,6 +35,43 @@ export class DetailPageComponent implements OnInit {
 
     });
   }
+
+  addButton() {
+    if (this.search === ''  || this.search == undefined) {
+      this.fetchProducts();
+    } else {
+      const result =  this.readProducts.filter(data => data.category === this.search.toLowerCase());
+      
+      this.products = result;
+      
+      this.detailTitle = result[0]?.category;
+    }
+    this.search = '';
+  }
+
+  goToHome(){
+    this.router.navigate(['/home'])
+  }
+
+  onLogout(){
+    this.router.navigate(['/'])
+  }
+
+  fetchProducts() {
+    this.app.fetch().subscribe(
+      (data: any)=>{
+        this.readProducts = data
+        this.products = data
+        this.detailTitle = ''
+        
+      },
+      (error: any)=> {
+        console.log(error)
+      }
+      
+    )
+  }
+
   fetchSingleProducts() {
     this.appService.fetchSingle(this.sid).subscribe(
       (data: any) => {
@@ -32,6 +83,18 @@ export class DetailPageComponent implements OnInit {
       }
     )
   }
+
+  fetchCatagory() {
+    this.app.getCategory().subscribe(
+      (data: any)=> {
+        this.categories = data 
+      },
+      (error: any)=> {
+        console.log(error)
+      }
+    )
+  }
+
   openSpinner() {
     this.spinner.show()
     setTimeout(()=>{

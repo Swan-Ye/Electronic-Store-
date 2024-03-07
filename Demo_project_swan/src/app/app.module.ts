@@ -11,12 +11,14 @@ import { DetailPageComponent } from './detail-page/detail-page.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     DetailPageComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
